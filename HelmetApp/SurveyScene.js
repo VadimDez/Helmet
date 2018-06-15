@@ -1,7 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button } from 'react-native';
 import PropTypes from 'prop-types';
-import { NextView } from './NextView';
+import { UniversalComponent } from './UniversalView';
+
+const globalOptions = [
+  {
+    title: 'asdqwe',
+    answer: 'asd qwe answer'
+  }
+];
 
 export class SurveyScene extends React.Component {
     static propTypes = {
@@ -10,9 +17,18 @@ export class SurveyScene extends React.Component {
     }
 
     _onForward = () => {
+      return () => {
+        
+      }
+    }
+
+    showOptions() {
       this.props.navigator.push({
-        component: NextView,
-        title: 'Scene'
+        component: UniversalComponent,
+        title: 'Fix my problem',
+        passProps: {
+          options: globalOptions
+        }
       });
     }
   
@@ -20,7 +36,7 @@ export class SurveyScene extends React.Component {
       return (
         <View style={styles.container}>
           <ScrollView>
-            <Button onPress={this._onForward}
+            <Button onPress={this.showOptions.bind(this)}
                     title="Fix my problem"
             />
 
@@ -33,7 +49,7 @@ export class SurveyScene extends React.Component {
             />
 
             <Button onPress={this._onForward}
-                    title="Fix my problem"
+                    title="Chatbot"
             />
           </ScrollView>
         </View>
