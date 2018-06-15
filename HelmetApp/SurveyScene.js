@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, NavigatorIOS, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import { NextView } from './NextView';
 
@@ -19,14 +19,23 @@ export class SurveyScene extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <Text>Open up App.js to start working on your app!</Text>
-            <Text>Changes you make will automatically reload.</Text>
-            <Text>Shake your phone to open the developer menu.</Text>
-            <Text>Current Scene: { this.props.title }</Text>
+          <ScrollView>
+            <Button onPress={this._onForward}
+                    title="Fix my problem"
+            />
 
-            <TouchableHighlight onPress={this._onForward}>
-                <Text>Tap me to load the next scene</Text>
-            </TouchableHighlight>
+            <Button onPress={this._onForward}
+                    title="Fix my problem"
+            />
+
+            <Button onPress={this._onForward}
+                    title="Fix my problem"
+            />
+
+            <Button onPress={this._onForward}
+                    title="Fix my problem"
+            />
+          </ScrollView>
         </View>
       )
     }

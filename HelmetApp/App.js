@@ -8,9 +8,8 @@ export default class App extends Component {
       <NavigatorIOS
         initialRoute={{
           component: SurveyScene,
-          title: 'My Initial Scene',
+          title: 'Helmet',
           passProps: {
-            title: 'My Initial Scene',
           }
         }}
         style={{flex: 1}}
