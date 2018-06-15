@@ -47,12 +47,13 @@ export class SurveyScene extends React.Component {
           <ScrollView>
 
               <ListView
+                  style={{ backgroundColor: 'white', flex: 1 } }
                   dataSource={this.state.dataSource}
                   renderRow={(rowData) =>
                       <Button onPress={this._onForward}
                               title={rowData}
-                              style={ styles.button }
-                              color="red"
+                              buttonStyle={ styles.button }
+
                   />}
               />
 
@@ -64,10 +65,14 @@ export class SurveyScene extends React.Component {
 
   const styles = StyleSheet.create({
       button: {
-          color: '#000000',
+          backgroundColor: '#00aeef',
+          borderColor: 'red',
+          borderWidth: 5,
+          borderRadius: 15,
+          color: 'red'
       },
     container: {
-      flex: 1,
+      flex:1,
       backgroundColor: '#263c54',
       alignItems: 'center',
       justifyContent: 'center',
