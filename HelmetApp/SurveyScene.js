@@ -33,9 +33,8 @@ export class SurveyScene extends React.Component {
 
     constructor() {
         super();
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+            
         };
     }
 
@@ -72,16 +71,15 @@ export class SurveyScene extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <FlatList
+            <FlatList style={{ backgroundColor: 'white', flex: 1 } }
                 data={[
                   { title: 'Fix my problem', action: this.showOptions.bind(this) },
                   { title: 'Chatbot', action: this.goToChat.bind(this) },
                 ]}
                 renderItem={(rowData) =>
                   <Button onPress={ rowData.item.action }
-                  title={ rowData.item.title }
-                  style={ styles.button }
-                  color="red"
+                    title={ rowData.item.title }
+                    style={ styles.button }
                   />}
                 keyExtractor={(item, index) => `${ index }`}
             />
@@ -92,10 +90,14 @@ export class SurveyScene extends React.Component {
 
   const styles = StyleSheet.create({
       button: {
-          color: '#000000',
+          backgroundColor: '#00aeef',
+          borderColor: 'red',
+          borderWidth: 5,
+          borderRadius: 15,
+          color: 'red'
       },
     container: {
-      flex: 1,
+      flex:1,
       backgroundColor: '#263c54',
       alignItems: 'center',
       justifyContent: 'center',
