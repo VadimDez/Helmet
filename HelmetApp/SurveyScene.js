@@ -45,27 +45,15 @@ export class SurveyScene extends React.Component {
       return (
         <View style={styles.container}>
           <ScrollView>
-            <Button onPress={this.showOptions.bind(this)}
-                    title="Fix my problem"
-                    style={ styles.button }
-                    color="red"
-            />
-
-            <Button onPress={this._onForward}
-                    title="Fix my problem"
-            />
-
-            <Button onPress={this._onForward}
-                    title="Fix my problem"
-            />
-
-            <Button onPress={this._onForward}
-                    title="Chatbot"
-            />
 
               <ListView
                   dataSource={this.state.dataSource}
-                  renderRow={(rowData) => <Text>{rowData}</Text>}
+                  renderRow={(rowData) =>
+                      <Button onPress={this._onForward}
+                              title={rowData}
+                              style={ styles.button }
+                              color="red"
+                  />}
               />
 
           </ScrollView>
