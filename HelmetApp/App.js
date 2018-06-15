@@ -12,7 +12,11 @@ export default class App extends Component {
           passProps: {
           }
         }}
+        translucent={true}
+        barTintColor="#213851"
+        titleTextColor="white"
         style={{flex: 1}}
+
       />
     );
   }
