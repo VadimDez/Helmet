@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button, ListView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button, ListView, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { UniversalComponent } from './UniversalView';
@@ -72,31 +72,19 @@ export class SurveyScene extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-          <ScrollView>
-            <Button onPress={this.showOptions.bind(this)}
-                    title="Fix my problem"
-                    style={ styles.button }
-                    color="red"
+            <FlatList
+                data={[
+                  { title: 'Fix my problem', action: this.showOptions.bind(this) },
+                  { title: 'Chatbot', action: this.goToChat.bind(this) },
+                ]}
+                renderItem={(rowData) =>
+                  <Button onPress={ rowData.item.action }
+                  title={ rowData.item.title }
+                  style={ styles.button }
+                  color="red"
+                  />}
+                keyExtractor={(item, index) => `${ index }`}
             />
-
-            <Button onPress={this._onForward}
-                    title="Fix my problem"
-            />
-
-            <Button onPress={this._onForward}
-                    title="Fix my problem"
-            />
-
-            <Button onPress={ this.goToChat.bind(this) }
-                    title="Chatbot"
-            />
-
-              <ListView
-                  dataSource={this.state.dataSource}
-                  renderRow={(rowData) => <Text>{rowData}</Text>}
-              />
-
-          </ScrollView>
         </View>
       )
     }
