@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button } from 'react-native';
 import PropTypes from 'prop-types';
-import { NextView } from './NextView';
+
+import { ChatComponent } from './ChatComponent';
 
 export class UniversalComponent extends React.Component {
   static propTypes = {
@@ -11,26 +12,51 @@ export class UniversalComponent extends React.Component {
     navigator: PropTypes.object.isRequired,
   };
 
-  _handlePress() {
+  _handlePress(option) {
+    return () => {
+      this.props.navigator.push({
+        component: UniversalComponent,
+        title: option.title,
+        passProps: {
+          ...option
+        }
+      });
+    };
+  }
 
+  goToChat() {
+    this.props.navigator.push({
+      component: ChatComponent,
+      title: 'Chat',
+      passProps: {
+      }
+    });
   }
 
   render() {
     let options = '';
 
     if (this.props.options) {
-      options = this.props.options.map(option => {
+      options = (<ScrollView>
+        { this.props.options.map((option, i) => {
         return <Button title={option.title}
-                        onPress={this._handlePress.bind(this)}
+                        onPress={this._handlePress(option).bind(this)}
+                        key={i}
         />
-      });
+      }) }
+      </ScrollView>)
+    } else if (this.props.answer) {
+      options = (
+        <ScrollView>
+          <Text>{ this.props.answer }</Text>
+          <Button onPress={ this.goToChat.bind(this) } title="Didn't help - use the chat"/>
+        </ScrollView>
+      );
     }
 
     return (
       <View style={styles.container}>
-        <ScrollView>
-          { options }
-        </ScrollView>
+        { options }
       </View>
     )
   }

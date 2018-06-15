@@ -1,12 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button, ListView } from 'react-native';
 import PropTypes from 'prop-types';
+
 import { UniversalComponent } from './UniversalView';
+import { ChatComponent } from './ChatComponent';
 
 const globalOptions = [
   {
     title: 'asdqwe',
     answer: 'asd qwe answer'
+  },
+  {
+    title: 'asdasd',
+    options: [
+      {
+        title: 'asd#1',
+        answer: 'asd#1'
+      },
+      {
+        title: 'asd#2',
+        answer: 'asd#2'
+      },
+      {
+        title: 'asd#3',
+        answer: 'asd#3'
+      }
+    ]
   }
 ];
 
@@ -29,6 +48,15 @@ export class SurveyScene extends React.Component {
       return () => {
         
       }
+    }
+
+    goToChat() {
+      this.props.navigator.push({
+        component: ChatComponent,
+        title: 'Chat',
+        passProps: {
+        }
+      });
     }
 
     showOptions() {
@@ -59,7 +87,7 @@ export class SurveyScene extends React.Component {
                     title="Fix my problem"
             />
 
-            <Button onPress={this._onForward}
+            <Button onPress={ this.goToChat.bind(this) }
                     title="Chatbot"
             />
 
