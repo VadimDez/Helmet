@@ -11,22 +11,35 @@ import { Ionicons } from '@expo/vector-icons';
 
 const globalOptions = [
   {
-    title: 'Error #1',
-    answer: '<img src="http://via.placeholder.com/350x150" width="100%" /> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-  },
-  {
-    title: 'Error #2',
+    title: 'Machine #1',
     options: [
       {
-        title: 'asd#1',
-        answer: 'asd#1'
+        title: 'Error #1',
+        answer: '<img src="http://via.placeholder.com/350x150" width="100%" /> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
       },
       {
-        title: 'asd#2',
+        title: 'Error #2',
         answer: 'asd#2'
       },
       {
-        title: 'asd#3',
+        title: 'Error #3',
+        answer: 'asd#3'
+      }
+    ]
+  },
+  {
+    title: 'Machine #2',
+    options: [
+      {
+        title: 'Error #1',
+        answer: '<img src="http://via.placeholder.com/350x150" width="100%" /> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      },
+      {
+        title: 'Error #2',
+        answer: 'asd#2'
+      },
+      {
+        title: 'Error #3',
         answer: 'asd#3'
       }
     ]
@@ -65,7 +78,7 @@ export class SurveyScene extends React.Component {
     showOptions() {
       this.props.navigator.push({
         component: UniversalComponent,
-        title: 'Fix my problem',
+        title: 'Choose machine',
         passProps: {
           options: globalOptions
         }
@@ -96,8 +109,8 @@ export class SurveyScene extends React.Component {
               data={[
                   { title: 'Fix my problem', action: this.showOptions.bind(this), icon: 'ios-help-circle-outline' },
                   { title: 'Chatbot', action: this.goToChat.bind(this), icon: 'ios-ionitron-outline' },
-                  { title: 'Scan QR', action: this.goToScan.bind(this), icon: 'ios-chatbubbles-outline' },
-                  { title: 'Emergency Call', action: this.goToEmergencyCall.bind(this), icon: 'ios-chatbubbles-outline' },
+                  { title: 'Scan QR', action: this.goToScan.bind(this), icon: 'ios-qr-scanner-outline' },
+                  { title: 'Emergency Call', action: this.goToEmergencyCall.bind(this), icon: 'ios-call-outline' },
               ]}
               renderItem={(rowData) =>
                 <TouchableOpacity style={styles.button} onPress={ rowData.item.action }>

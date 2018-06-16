@@ -70,9 +70,9 @@ export class UniversalComponent extends React.Component {
       </View></ScrollView>)
     } else if (this.props.answer) {
       options = (
-        <ScrollView  style={{padding: 25}}>
+        <ScrollView  style={{width: '90%'}}>
           <View>
-          <HTML style={{ marginBottom: 25 }} html={this.props.answer}  imagesMaxWidth={Dimensions.get('window').width} />
+          <HTML html={this.props.answer}  imagesMaxWidth={Dimensions.get('window').width} />
           <Button onPress={ this.goToChat.bind(this) } title="Didn't help ? Use the ChatBot"/>
           </View>
         </ScrollView>
