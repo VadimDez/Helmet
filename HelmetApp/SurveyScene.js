@@ -84,12 +84,20 @@ export class SurveyScene extends React.Component {
                 <TouchableOpacity style={styles.button} onPress={ rowData.item.action }>
                   <Text style={styles.textStyle}  title={ rowData.item.title }>
 
-                    <View style={{ borderRightWidth: 1, borderRightColor: 'grey', width: 70, height:70, justifyContent: 'center'}}>
-                      <Ionicons name={ rowData.item.icon } size={30} color="grey" />
+                    <View style={{ borderRightWidth: 1, borderRightColor: '#dbdbdb', width: 70, height:45, justifyContent: 'center'}}>
+                      <Ionicons name={ rowData.item.icon } size={30} color="#009999" style={{ textAlign: 'center' }} />
                     </View>
 
-                      { rowData.item.title }
-                      </Text>
+                    <View style={{ width: 165, height:45, paddingLeft:30, justifyContent: 'center'}}>
+                      <Text style={{ color: '#818790', fontSize: 16 }}>{ rowData.item.title }</Text>
+                      <Text style={{ color: '#818790', fontSize: 10 }}>{ rowData.item.title }</Text>
+                    </View>
+
+                    <View style={{ width: 70, height:45, justifyContent: 'flex-end', alignSelf: 'flex-end' }}>
+                      <Ionicons name="ios-arrow-forward" size={30} color="#009999" style={{ textAlign: 'right' }} />
+                    </View>
+
+                  </Text>
                 </TouchableOpacity>}
               keyExtractor={(item, index) => `${ index }`}
           />
@@ -110,22 +118,23 @@ export class SurveyScene extends React.Component {
     },
       textStyle: {
         color: '#797f88',
-        justifyContent: 'center'
+        justifyContent: 'center',
       },
       button: {
-          backgroundColor: 'white',
-          borderRadius: 10,
-          padding: 0,
-          margin: 20,
-          marginTop: 0,
-          shadowColor: '#686868',
-          shadowOffset: {
-              width: 3,
-              height: 3
-          },
-          minHeight: 75,
-          shadowRadius: 5,
-          shadowOpacity: 0.3,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 0,
+        margin: 20,
+        marginTop: 0,
+        shadowColor: '#686868',
+        shadowOffset: {
+            width: 3,
+            height: 3
+        },
+        minHeight: 75,
+        shadowRadius: 5,
+        shadowOpacity: 0.3,
+        justifyContent: 'center'
 
       },
       flatlist: {
