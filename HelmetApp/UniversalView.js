@@ -37,12 +37,6 @@ export class UniversalComponent extends React.Component {
     });
   }
 
-  /*
-  * <Button title={option.title}
-                        onPress={this._handlePress(option).bind(this)}
-                        key={i}
-        />
-        */
   render() {
     let options = '';
 
