@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button,TouchableOpacity,Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { ChatComponent } from './ChatComponent';
@@ -70,11 +70,9 @@ export class UniversalComponent extends React.Component {
       </View></ScrollView>)
     } else if (this.props.answer) {
       options = (
-        <ScrollView>
-          <View style={{
-            padding: 25
-          }}>
-          <HTML style={{ marginBottom: 25 }} html={this.props.answer} />
+        <ScrollView  style={{padding: 25}}>
+          <View>
+          <HTML style={{ marginBottom: 25 }} html={this.props.answer}  imagesMaxWidth={Dimensions.get('window').width} />
           <Button onPress={ this.goToChat.bind(this) } title="Didn't help ? Use the ChatBot"/>
           </View>
         </ScrollView>
