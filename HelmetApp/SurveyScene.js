@@ -77,8 +77,8 @@ export class SurveyScene extends React.Component {
             style={ styles.flatlist }
               data={[
                   { title: 'Fix my problem', action: this.showOptions.bind(this), icon: 'ios-help-circle-outline' },
-                  { title: 'Chatbot', action: this.goToChat.bind(this), icon: 'ios-chatbubbles-outline' },
-                  { title: 'Залупа', action: this.goToChat.bind(this), icon: 'ios-close-circle-outline' },
+                  { title: 'Chatbot', action: this.goToChat.bind(this), icon: 'ios-ionitron-outline' },
+                  { title: 'Залупа', action: this.goToChat.bind(this), icon: 'ios-chatbubbles-outline' },
               ]}
               renderItem={(rowData) =>
                 <TouchableOpacity style={styles.button} onPress={ rowData.item.action }>
@@ -113,7 +113,7 @@ export class SurveyScene extends React.Component {
       //alignItems: 'flex-start',
       //flexDirection: 'row',
       backgroundColor: '#263c54',
-        paddingTop:20,
+        paddingTop:40,
         flexWrap: 'wrap',
     },
       textStyle: {
