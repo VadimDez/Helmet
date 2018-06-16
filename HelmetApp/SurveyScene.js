@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { UniversalComponent } from './UniversalView';
 import { ChatComponent } from './ChatComponent';
+import { ScanComponent } from './ScanComponent';
+import { EmergencyComponent } from './EmergencyComponent';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -69,6 +71,22 @@ export class SurveyScene extends React.Component {
         }
       });
     }
+
+    goToScan() {
+      this.props.navigator.push({
+        component: ScanComponent,
+        title: 'Scan QR',
+        passProps: {}
+      });
+    }
+
+    goToEmergencyCall() {
+      this.props.navigator.push({
+        component: EmergencyComponent,
+        title: 'Emergency Call',
+        passProps: {}
+      });
+    }
   
     render() {
       return (
@@ -78,7 +96,8 @@ export class SurveyScene extends React.Component {
               data={[
                   { title: 'Fix my problem', action: this.showOptions.bind(this), icon: 'ios-help-circle-outline' },
                   { title: 'Chatbot', action: this.goToChat.bind(this), icon: 'ios-ionitron-outline' },
-                  { title: 'Залупа', action: this.goToChat.bind(this), icon: 'ios-chatbubbles-outline' },
+                  { title: 'Scan QR', action: this.goToScan.bind(this), icon: 'ios-chatbubbles-outline' },
+                  { title: 'Emergency Call', action: this.goToEmergencyCall.bind(this), icon: 'ios-chatbubbles-outline' },
               ]}
               renderItem={(rowData) =>
                 <TouchableOpacity style={styles.button} onPress={ rowData.item.action }>

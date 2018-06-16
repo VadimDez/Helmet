@@ -24,6 +24,10 @@ export class ChatComponent extends React.Component {
     Api.sendRequest( '', null );
   }
 
+  componentWillUnmount() {
+
+  }
+
   send() {
     var context;
     var latestResponse = Api.getResponsePayload();
@@ -44,19 +48,18 @@ export class ChatComponent extends React.Component {
     var currentRequestPayloadSetter = Api.setRequestPayload;
     Api.setRequestPayload = (newPayloadStr) => {
       currentRequestPayloadSetter.call(Api, newPayloadStr);
-      this.displayMessage(JSON.parse(newPayloadStr), 'user');
+      this.displayMessage(JSON.parse(newPayloadStr), true);
     };
 
     var currentResponsePayloadSetter = Api.setResponsePayload;
     Api.setResponsePayload = (newPayloadStr) => {
       currentResponsePayloadSetter.call(Api, newPayloadStr);
-      this.displayMessage(JSON.parse(newPayloadStr), 'watson');
+      this.displayMessage(JSON.parse(newPayloadStr), false);
     };
   }
 
   // Display a user or Watson message that has just been sent/received
-  displayMessage(newPayload, typeValue) {
-    var isUser = this.isUserMessage(typeValue);
+  displayMessage(newPayload, isUser) {
     var textExists = (newPayload.input && newPayload.input.text)
       || (newPayload.output && newPayload.output.text);
     if (isUser !== null && textExists) {
@@ -69,18 +72,6 @@ export class ChatComponent extends React.Component {
       // Move chat to the most recent messages when new messages are added
       // scrollToChatBottom();
     }
-  }
-
-  // Checks if the given typeValue matches with the user "name", the Watson "name", or neither
-  // Returns true if user, false if Watson, and null if neither
-  // Used to keep track of whether a message was from the user or Watson
-  isUserMessage(typeValue) {
-    if (typeValue === 'user') {
-      return true;
-    } else if (typeValue === 'watson') {
-      return false;
-    }
-    return null;
   }
 
   buildMessages(newPayload, isUser) {
