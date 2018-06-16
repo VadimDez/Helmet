@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { GiftedChat } from 'react-native-gifted-chat'
 
 import { Api } from './Api';
 
@@ -19,6 +19,7 @@ export class ChatComponent extends React.Component {
       messages: [],
       text: ''
     }
+    this.msgIdCount = 0;
     
     Api.sendRequest( '', null );
   }
@@ -60,9 +61,9 @@ export class ChatComponent extends React.Component {
       || (newPayload.output && newPayload.output.text);
     if (isUser !== null && textExists) {
       // Create new message DOM element
-      var messageDivs = this.buildMessageDomElements(newPayload, isUser);
+      const messages = this.buildMessages(newPayload, isUser);
       this.setState({
-        messages: [...this.state.messages, ...messageDivs]
+        messages: [...messages, ...this.state.messages]
       });
 
       // Move chat to the most recent messages when new messages are added
@@ -82,7 +83,7 @@ export class ChatComponent extends React.Component {
     return null;
   }
 
-  buildMessageDomElements(newPayload, isUser) {
+  buildMessages(newPayload, isUser) {
     var textArray = isUser ? newPayload.input.text : newPayload.output.text;
     if (Object.prototype.toString.call( textArray ) !== '[object Array]') {
       textArray = [textArray];
@@ -93,9 +94,14 @@ export class ChatComponent extends React.Component {
       if (currentText) {
         var messageJson = {
           isUser,
-          text: currentText
+          text: currentText,
+          _id: this.msgIdCount++,
+          user: isUser ? {} : {
+            _id: 1,
+            name: 'watson'
+          }
         };
-        messageArray.push(messageJson);
+        messageArray.unshift(messageJson);
       }
     });
 
@@ -103,22 +109,12 @@ export class ChatComponent extends React.Component {
   }
 
   render() {
-    const messages =  this.state.messages.map((msg, i) => <Text key={i}>{ msg.text }</Text>) 
     return (
-      <KeyboardAwareScrollView contentContainerStyle={{flex:1}}>
-        <View style={styles.container}>
-          <View style={ styles.messages }>
-            { messages }
-          </View>
-          <TextInput
-            style={{height: 40, width: '100%', borderColor: 'gray', borderRadius: 5, borderWidth: 1}}
-            onChangeText={(text) => this.setState({text})}
-            returnKeyType="send"
-            value={this.state.text}
-            onSubmitEditing={ this.send.bind(this) }
-          />
-        </View>
-      </KeyboardAwareScrollView>
+        <GiftedChat
+          messages={this.state.messages}
+          onSend={ this.send.bind(this) }
+          onInputTextChanged={(text) => this.setState({text})}
+        />
       );
   }
 }
