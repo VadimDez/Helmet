@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { ChatComponent } from './ChatComponent';
 
 import { Ionicons } from '@expo/vector-icons';
+import HTML from 'react-native-render-html';
+
 
 export class UniversalComponent extends React.Component {
   static propTypes = {
@@ -69,8 +71,12 @@ export class UniversalComponent extends React.Component {
     } else if (this.props.answer) {
       options = (
         <ScrollView>
-          <Text>{ this.props.answer }</Text>
-          <Button onPress={ this.goToChat.bind(this) } title="Didn't help - use the chat"/>
+          <View style={{
+            padding: 25
+          }}>
+          <HTML style={{ marginBottom: 25 }} html={this.props.answer} />
+          <Button onPress={ this.goToChat.bind(this) } title="Didn't help ? Use the ChatBot"/>
+          </View>
         </ScrollView>
       );
     }
