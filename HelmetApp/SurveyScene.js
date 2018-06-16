@@ -9,42 +9,136 @@ import { EmergencyComponent } from './EmergencyComponent';
 
 import { Ionicons } from '@expo/vector-icons';
 
+const defaultAnswer = '<img src="http://via.placeholder.com/350x150" width="100%" /> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
+
 const globalOptions = [
   {
-    title: 'Machine #1',
+    title: 'Water Filtration Equipment',
     options: [
       {
-        title: 'Error #1',
-        answer: '<img src="http://via.placeholder.com/350x150" width="100%" /> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+        title: 'Filter leakage',
+        answer: defaultAnswer
       },
       {
-        title: 'Error #2',
-        answer: 'asd#2'
+        title: 'Insuficient purification',
+        answer: defaultAnswer
       },
       {
-        title: 'Error #3',
-        answer: 'asd#3'
+        title: 'Decrease in capacity',
+        answer: defaultAnswer
+      },
+      {
+        title: 'Change filter',
+        answer: defaultAnswer
       }
     ]
   },
   {
-    title: 'Machine #2',
+    title: 'Soft Drink Filling',
     options: [
       {
-        title: 'Error #1',
-        answer: '<img src="http://via.placeholder.com/350x150" width="100%" /> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+        title: 'Weak flow',
+        answer: defaultAnswer
       },
       {
-        title: 'Error #2',
-        answer: 'asd#2'
+        title: 'Too much foam',
+        answer: defaultAnswer
       },
       {
-        title: 'Error #3',
-        answer: 'asd#3'
-      }
+        title: 'Extraneous mechanical noise',
+        answer: defaultAnswer
+      },
+      {
+        title: 'Compressor overheats',
+        answer: defaultAnswer
+      },
     ]
-  }
+  },
+  {
+    title: 'Carbonated Beverage Filling Machines',
+    options: [
+      {
+        title: 'CO2 finishes quickly',
+        answer: defaultAnswer
+      },
+      {
+        title: 'Extraneous mechanical noise',
+        answer: defaultAnswer
+      },
+      {
+        title: 'Compressor overheats',
+        answer: defaultAnswer
+      },
+    ]
+  },
 ];
+
+
+
+const styles = StyleSheet.create({
+
+  container: {
+    flex: 1,
+    //alignItems: 'flex-start',
+    //flexDirection: 'row',
+    backgroundColor: '#263c54',
+      paddingTop:40,
+      flexWrap: 'wrap',
+  },
+    textStyle: {
+      color: '#797f88',
+      justifyContent: 'center',
+    },
+    button: {
+      backgroundColor: 'white',
+      borderRadius: 10,
+      padding: 0,
+      margin: 20,
+      marginTop: 0,
+      shadowColor: '#686868',
+      shadowOffset: {
+          width: 3,
+          height: 3
+      },
+      minHeight: 75,
+      shadowRadius: 5,
+      shadowOpacity: 0.3,
+      justifyContent: 'center'
+
+    },
+    buttonEmergency: {
+      backgroundColor: 'white',
+      borderRadius: 10,
+      padding: 0,
+      margin: 20,
+      marginTop: 0,
+      shadowColor: '#ff0000',
+      shadowOffset: {
+          width: 3,
+          height: 3
+      },
+      minHeight: 75,
+      shadowRadius: 5,
+      shadowOpacity: 0.3,
+      justifyContent: 'center'
+
+    },
+    flatlist: {
+
+        backgroundColor: 'white',
+
+        /*flexGrow: 1,
+        flexShrink: 0,
+        flexBasis: '25%',
+      backgroundColor: 'white',
+      height: 'auto',
+      widith: '80%',
+      borderRadius:10,
+      marginLeft: 20,
+      marginRight: 20,*/
+  }
+
+});
 
 export class SurveyScene extends React.Component {
 
@@ -100,20 +194,29 @@ export class SurveyScene extends React.Component {
         passProps: {}
       });
     }
+
+    getButtonStyles(rowData, length) {
+      if (rowData.index === length) {
+        return styles.buttonEmergency;
+      }
+      return styles.button;
+    }
   
     render() {
+      const data = [
+        { title: 'Fix my problem', action: this.showOptions.bind(this), icon: 'ios-help-circle-outline' },
+        { title: 'Chatbot', action: this.goToChat.bind(this), icon: 'ios-ionitron-outline' },
+        { title: 'Scan QR', action: this.goToScan.bind(this), icon: 'ios-qr-scanner-outline' },
+        { title: 'Emergency Call', action: this.goToEmergencyCall.bind(this), icon: 'ios-call-outline' },
+      ];
+
       return (
         <View style={styles.container}>
           <FlatList
             style={ styles.flatlist }
-              data={[
-                  { title: 'Fix my problem', action: this.showOptions.bind(this), icon: 'ios-help-circle-outline' },
-                  { title: 'Chatbot', action: this.goToChat.bind(this), icon: 'ios-ionitron-outline' },
-                  { title: 'Scan QR', action: this.goToScan.bind(this), icon: 'ios-qr-scanner-outline' },
-                  { title: 'Emergency Call', action: this.goToEmergencyCall.bind(this), icon: 'ios-call-outline' },
-              ]}
+              data={ data }
               renderItem={(rowData) =>
-                <TouchableOpacity style={styles.button} onPress={ rowData.item.action }>
+                <TouchableOpacity style={ this.getButtonStyles(rowData, data.length - 1) } onPress={ rowData.item.action }>
                   <Text style={styles.textStyle}  title={ rowData.item.title }>
 
                     <View style={{ borderRightWidth: 1, borderRightColor: '#dbdbdb', width: 70, height:45, justifyContent: 'center'}}>
@@ -137,51 +240,3 @@ export class SurveyScene extends React.Component {
       )
     }
   }
-
-  const styles = StyleSheet.create({
-
-    container: {
-      flex: 1,
-      //alignItems: 'flex-start',
-      //flexDirection: 'row',
-      backgroundColor: '#263c54',
-        paddingTop:40,
-        flexWrap: 'wrap',
-    },
-      textStyle: {
-        color: '#797f88',
-        justifyContent: 'center',
-      },
-      button: {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        padding: 0,
-        margin: 20,
-        marginTop: 0,
-        shadowColor: '#686868',
-        shadowOffset: {
-            width: 3,
-            height: 3
-        },
-        minHeight: 75,
-        shadowRadius: 5,
-        shadowOpacity: 0.3,
-        justifyContent: 'center'
-
-      },
-      flatlist: {
-
-          backgroundColor: 'white',
-
-          /*flexGrow: 1,
-          flexShrink: 0,
-          flexBasis: '25%',
-        backgroundColor: 'white',
-        height: 'auto',
-        widith: '80%',
-        borderRadius:10,
-        marginLeft: 20,
-        marginRight: 20,*/
-    }
-
-  });
