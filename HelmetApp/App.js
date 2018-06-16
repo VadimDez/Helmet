@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, NavigatorIOS, TouchableHighlight } from 'react-
 import { SurveyScene } from './SurveyScene';
 
 export default class App extends Component {
+
   render() {
     return (
       <NavigatorIOS

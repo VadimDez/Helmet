@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button, ListView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button, FlatList, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { UniversalComponent } from './UniversalView';
 import { ChatComponent } from './ChatComponent';
+
+import { Ionicons } from '@expo/vector-icons';
 
 const globalOptions = [
   {
@@ -71,36 +73,74 @@ export class SurveyScene extends React.Component {
     render() {
       return (
         <View style={styles.container}>
-            <FlatList style={{ backgroundColor: 'white', flex: 1 } }
-                data={[
-                  { title: 'Fix my problem', action: this.showOptions.bind(this) },
-                  { title: 'Chatbot', action: this.goToChat.bind(this) },
-                ]}
-                renderItem={(rowData) =>
-                  <Button onPress={ rowData.item.action }
-                    title={ rowData.item.title }
-                    style={ styles.button }
-                  />}
-                keyExtractor={(item, index) => `${ index }`}
-            />
+          <FlatList
+            style={ styles.flatlist }
+              data={[
+                  { title: 'Fix my problem', action: this.showOptions.bind(this), icon: 'ios-help-circle-outline' },
+                  { title: 'Chatbot', action: this.goToChat.bind(this), icon: 'ios-chatbubbles-outline' },
+                  { title: 'Залупа', action: this.goToChat.bind(this), icon: 'ios-close-circle-outline' },
+              ]}
+              renderItem={(rowData) =>
+                <TouchableOpacity style={styles.button} onPress={ rowData.item.action }>
+                  <Text style={styles.textStyle}  title={ rowData.item.title }>
+
+                    <View style={{ borderRightWidth: 1, borderRightColor: 'grey', width: 70, height:70, justifyContent: 'center'}}>
+                      <Ionicons name={ rowData.item.icon } size={30} color="grey" />
+                    </View>
+
+                      { rowData.item.title }
+                      </Text>
+                </TouchableOpacity>}
+              keyExtractor={(item, index) => `${ index }`}
+          />
         </View>
       )
     }
   }
 
   const styles = StyleSheet.create({
-      button: {
-          backgroundColor: '#00aeef',
-          borderColor: 'red',
-          borderWidth: 5,
-          borderRadius: 15,
-          color: 'red'
-      },
+
     container: {
-      flex:1,
+      flex: 1,
+      //alignItems: 'flex-start',
+      //flexDirection: 'row',
       backgroundColor: '#263c54',
-      alignItems: 'center',
-      justifyContent: 'center',
+        paddingTop:20,
+        flexWrap: 'wrap',
     },
+      textStyle: {
+        color: '#797f88',
+        justifyContent: 'center'
+      },
+      button: {
+          backgroundColor: 'white',
+          borderRadius: 10,
+          padding: 0,
+          margin: 20,
+          marginTop: 0,
+          shadowColor: '#686868',
+          shadowOffset: {
+              width: 3,
+              height: 3
+          },
+          minHeight: 75,
+          shadowRadius: 5,
+          shadowOpacity: 0.3,
+
+      },
+      flatlist: {
+
+          backgroundColor: 'white',
+
+          /*flexGrow: 1,
+          flexShrink: 0,
+          flexBasis: '25%',
+        backgroundColor: 'white',
+        height: 'auto',
+        widith: '80%',
+        borderRadius:10,
+        marginLeft: 20,
+        marginRight: 20,*/
+    }
 
   });
