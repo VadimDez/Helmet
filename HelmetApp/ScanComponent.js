@@ -56,14 +56,15 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Image
 } from 'react-native';
 
 export class ScanComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
+        <Image source={ require('./assets/img/qr.png') } style={ { width: 200, height: 200 } } />
       </View>
     );
   }
@@ -81,7 +82,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'black'
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   preview: {
     flex: 1,
