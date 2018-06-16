@@ -51,9 +51,5 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>fontawesome-webfont.ttf</string>
-	</array>
 </dict>
 </plist>
