@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, Button,TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { ChatComponent } from './ChatComponent';
+
+import { Ionicons } from '@expo/vector-icons';
 
 export class UniversalComponent extends React.Component {
   static propTypes = {
@@ -33,18 +35,37 @@ export class UniversalComponent extends React.Component {
     });
   }
 
+  /*
+  * <Button title={option.title}
+                        onPress={this._handlePress(option).bind(this)}
+                        key={i}
+        />
+        */
   render() {
     let options = '';
 
     if (this.props.options) {
-      options = (<ScrollView>
+      options = (<ScrollView><View style={styles.container}>
         { this.props.options.map((option, i) => {
-        return <Button title={option.title}
-                        onPress={this._handlePress(option).bind(this)}
-                        key={i}
-        />
+        return <TouchableOpacity style={styles.button} onPress={this._handlePress(option).bind(this)} key={i}>
+          <Text style={styles.textStyle}  title={ option.title }>
+
+          <View style={{ borderRightWidth: 1, borderRightColor: '#dbdbdb', width: 70, height:45, justifyContent: 'center'}}>
+           <Ionicons name="ios-help-circle-outline" size={30} color="#009999" style={{ textAlign: 'center' }} />
+          </View>
+
+          <View style={{ width: 215, height:45, paddingLeft:30, justifyContent: 'center'}}>
+            <Text style={{ color: '#818790', fontSize: 16 }}>{ option.title }</Text>
+            <Text style={{ color: '#818790', fontSize: 10 }}>{ option.title }</Text>
+          </View>
+
+          <View style={{ width: 30, height:45, justifyContent: 'flex-end', alignSelf: 'flex-end' }}>
+            <Ionicons name="ios-arrow-forward" size={30} color="#009999" />
+          </View>
+          </Text>
+        </TouchableOpacity>
       }) }
-      </ScrollView>)
+      </View></ScrollView>)
     } else if (this.props.answer) {
       options = (
         <ScrollView>
@@ -65,8 +86,31 @@ export class UniversalComponent extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexWrap: 'wrap',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop:20,
+  },
+  textStyle: {
+    color: '#797f88',
+    justifyContent: 'center',
+  },
+  button: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 0,
+    margin: 20,
+    marginTop: 0,
+    shadowColor: '#686868',
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    minHeight: 75,
+    shadowRadius: 5,
+    shadowOpacity: 0.3,
+    justifyContent: 'center'
+
   },
 });
