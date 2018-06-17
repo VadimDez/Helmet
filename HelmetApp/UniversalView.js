@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, NavigatorIOS, TouchableHighlight, B
 import PropTypes from 'prop-types';
 
 import { ChatComponent } from './ChatComponent';
+import { EmergencyComponent } from './EmergencyComponent';
 
 import { Ionicons } from '@expo/vector-icons';
 import HTML from 'react-native-render-html';
@@ -32,6 +33,15 @@ export class UniversalComponent extends React.Component {
     this.props.navigator.push({
       component: ChatComponent,
       title: 'Chat',
+      passProps: {
+      }
+    });
+  }
+
+  goToEmergency() {
+    this.props.navigator.push({
+      component: EmergencyComponent,
+      title: 'Emergency call',
       passProps: {
       }
     });
@@ -67,7 +77,9 @@ export class UniversalComponent extends React.Component {
         <ScrollView  style={{width: '90%'}}>
           <View>
           <HTML html={this.props.answer}  imagesMaxWidth={Dimensions.get('window').width} />
-          <Button onPress={ this.goToChat.bind(this) } title="Didn't help ? Use the ChatBot"/>
+            <Button onPress={ this.goToChat.bind(this) } title="Didn't help ? Use the ChatBot"/>
+            <Text style={ {textAlign: 'center'} }>or</Text>
+            <Button color="red" onPress={ this.goToEmergency.bind(this) } title="Make emergency call"/>
           </View>
         </ScrollView>
       );

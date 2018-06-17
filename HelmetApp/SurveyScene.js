@@ -29,7 +29,7 @@ const globalOptions = [
       },
       {
         title: 'Change filter',
-        answer: defaultAnswer
+        answer: "<h4>How to change filter</h4><p>1. To remove filter turn the water filter a quarter turn to the left. Normally, the cap will be aligned vertically. </p><p>2. Pull the water filter straight out</p><p>3. Remove the cap (on some models)</p><p>Reminder:  Make sure to place the cap on the new filter</p><p>CLICK HERE to watch a video on how to replace the water filter</p>"
       }
     ]
   },
