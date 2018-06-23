@@ -1,0 +1,16 @@
+# Helmet
+
+A hackathon project for [TECHFEST 2018](https://www.techfestmunich.com)
+
+### Problem
+Make worker at coca cola factory superheroes
+
+### Stack
+* Node
+* Express
+* React Native
+
+### Team
+
+* [Vlad](https://github.com/KoniRus)
+* [Vadym Yatsyuk](https://github.com/vadimdez)
