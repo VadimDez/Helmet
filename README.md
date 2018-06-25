@@ -9,6 +9,7 @@ Make worker at coca cola factory superheroes
 * Node
 * Express
 * React Native
+* IBM Watson Assistant
 
 ### Team
 
