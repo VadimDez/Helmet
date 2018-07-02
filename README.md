@@ -13,10 +13,11 @@ Make worker at coca cola factory superheroes
 
 ### Team
 
-* [Vlad](https://github.com/KoniRus)
+* [Vlad Bogomolov](https://github.com/KoniRus)
 * [Vadym Yatsyuk](https://github.com/vadimdez)
 
 
 ## License
 
-[MIT](https://tldrlegal.com/license/mit-license) © [Vadym Yatsyuk](https://github.com/vadimdez)
+[MIT](https://tldrlegal.com/license/mit-license) © [Vlad Bogomolov](https://github.com/KoniRus) & [Vadym Yatsyuk](https://github.com/vadimdez) 
+
