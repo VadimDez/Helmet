@@ -9,7 +9,7 @@ Make worker at coca cola factory superheroes
 * Node
 * Express
 * React Native
-* IBM Watson Assistant
+* [IBM Watson Assistant](https://console.bluemix.net/catalog/services/watson-assistant-formerly-conversation)
 
 ### Team
 
