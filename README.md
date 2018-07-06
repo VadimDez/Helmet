@@ -5,6 +5,10 @@ A hackathon project for [TECHFEST 2018](https://www.techfestmunich.com)
 ### Problem
 Make worker at coca cola factory superheroes
 
+### Solution
+App that helps user to prevent or solve problems with machinery.
+Integrates simple two steps solutions. Integrates chatbot.
+
 ### Stack
 * Node
 * Express
