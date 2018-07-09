@@ -9,6 +9,8 @@ Make worker at coca cola factory superheroes
 App that helps user to prevent or solve problems with machinery.
 Integrates simple two steps solutions. Integrates chatbot.
 
+<img src="https://github.com/VadimDez/Helmet/blob/master/screen.png" width="480">
+
 ### Stack
 * Node
 * Express
